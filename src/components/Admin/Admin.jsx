@@ -19,6 +19,31 @@ const Admin = () => {
   const { productLength } = ProductQuantity();
   const { orderLength } = Orderlength();
 
+  useEffect(()=>{
+    async function userCount()
+    {
+      let{data,error}=await supabase.from('users').select('*');
+      try
+      {
+        if(error)
+        {
+          console.log(error.message);
+        }
+        else
+        {
+          let userCount = data.length;
+          setUserCount(userCount);
+        }
+      }
+      catch(error)
+      {
+        console.log(error.length);
+      }
+    }
+    userCount();
+  },[])
+
+
   const [productPriceData, setProductPriceData] = useState({
     '1-1200': 0,
     '1201-1500': 0,

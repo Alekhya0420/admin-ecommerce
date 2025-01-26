@@ -19,22 +19,23 @@ const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Frontpage />} />
-        <Route path="/add" element={<Addproduct />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/order-tracking" element={<Ordertracker />} />
-        <Route path="/productview" element={<Productview />} />
-        <Route path="/total-user" element={<Usercount />} />
-        <Route path="/total-user/:name" element={<Userinvolve />} />
-        <Route path="/checkorder-list" element={<Userorderlist />} />
+        <Route path="/" element={<Frontpage/>}/>
+        <Route path="/add" element={<Addproduct/>}/>
+        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/order-tracking" element={<Ordertracker/>}/>
+        <Route path="/productview" element={<Productview/>}/>
+        <Route path="/total-user" element={<Usercount/>}/>
+        <Route path="/total-user/:name" element={<Userinvolve/>}/>
+        <Route path="/checkorder-list" element={<Userorderlist />}/>
+
         {/*userpart starts here*/}
         <Route path="/user-reg" element={<UserRegistration/>} />
         <Route path="/user-login" element={<Userlogin/>}/>
-
         <Route path="/userDashboard" element={<UserDashboard/>}/>
         <Route path="/userDashboard/user-order" element={<Userordered/>}/>
         <Route path="/userDashboard/user-order/:id" element={<ProductDetails/>}/>
         <Route path="/wish-list" element={<Wishlist/>}/>
+        
       </Routes>
     </Router>
   );
