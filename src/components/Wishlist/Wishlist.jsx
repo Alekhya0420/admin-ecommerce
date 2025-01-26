@@ -11,9 +11,9 @@ import {
   Container,
 } from "@mui/material";
 import supabase from "../../../src/config/superbaseClient";
-import UserHeader from "../../../reusables/users/UserHeader/UserHeader";
-import UserFooter from "../../../reusables/users/UserFooter/UserFooter";
-import UserSlidebar from "../../../reusables/users/UserSlidebar/UserSlidebar";
+import UserHeader from '../../reusables/users/UserHeader/UserHeader'
+import UserFooter from "../../reusables/users/UserFooter/UserFooter";
+import UserSlidebar from "../../reusables/users/UserSlidebar/UserSlidebar";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);

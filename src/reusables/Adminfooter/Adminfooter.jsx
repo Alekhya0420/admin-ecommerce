@@ -3,11 +3,12 @@ import { Box, Typography } from "@mui/material";
 
 const Adminfooter = () => {
   return (
+  <div style={{marginTop:"auto"}}>  
     <Box
       sx={{
         width: "100%",
         backgroundColor: "#2196F3",
-        padding: "20px",
+        padding: "10px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -17,6 +18,7 @@ const Adminfooter = () => {
         bottom: 0,
         left: 0, 
         zIndex: 10,
+        marginTop:"50px"
       }}
     >
       <Typography sx={{ fontSize: "14px", color: "#333", marginBottom: "10px" }}>
@@ -35,6 +37,7 @@ const Adminfooter = () => {
         </p>
       </Box>
     </Box>
+   </div> 
   );
 };
 

@@ -1,13 +1,13 @@
 "use client"
 import React, {useEffect,useState} from "react";
 import axios from "axios";
-import {product_api} from "../../../../api/api";
+import {product_api} from '../../../api/api'
 import {Box,Card,CardContent,CardMedia,Typography,Grid,Button,TextField} from "@mui/material";
-import UserHeader from "../../../../reusables/users/UserHeader/UserHeader";
-import UserSlidebar from "../../../../reusables/users/UserSlidebar/UserSlidebar";
-import UserFooter from "../../../../reusables/users/UserFooter/UserFooter";
-import supabase from "../../../config/superbaseClient";
-import ReviewModal from "../../../../reusables/review/ReviewModal";
+import UserHeader from '../../../reusables/users/UserHeader/UserHeader'
+import UserSlidebar from "../../../reusables/users/UserSlidebar/UserSlidebar";
+import UserFooter from "../../../reusables/users/UserFooter/UserFooter";
+import supabase from '../../../config/superbaseClient'
+import ReviewModal from "../../../reusables/review/ReviewModal";
 
 const UserDashboard = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ const UserDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [user, setUser] = useState(null);  // Added state for user
-  const api_key = process.env.NEXT_PUBLIC_SUPABASE_KEY;
+  const api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqaHZ6emtzemJqZXVucnZncXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcwOTQ2MDgsImV4cCI6MjA1MjY3MDYwOH0.lkz7qhlQ-rxSlZJzCXgBNDPFnoMjvu9QQWWnSf8zOco";
 
   
   // Fetch user data after the component mounts (client-side only)
@@ -37,7 +37,6 @@ const UserDashboard = () => {
         const response = await axios.get(product_api, {
           headers: {
             apikey: api_key,
-            Authorization: `Bearer ${api_key}`,
           },
         });
         setProducts(response.data);

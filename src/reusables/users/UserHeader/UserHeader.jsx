@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Button } from '@mui/material';
 import { Menu as MenuIcon, AccountCircle as AccountCircleIcon, Favorite as FavoriteIcon } from '@mui/icons-material';
-import Link from 'next/link';
-import supabase from '../../../src/config/superbaseClient';
+import { Link } from 'react-router-dom';
+import supabase from '../../../config/superbaseClient'
 
 const UserHeader = () => {
   const [cartNo, setCartNo] = useState(0);
@@ -55,18 +55,21 @@ const UserHeader = () => {
             color: '#333',
           }}
         >
+        <Link to="/userDashboard">
           User-Dashboard
+        </Link>  
         </Typography>
 
         <div style={{ display: 'flex', gap: '10px' }}>
-          <Link href="/userDashboard/user-order">
+          <Link to="/userDashboard/user-order">
             <Typography
               variant="h6"
               sx={{
                 fontWeight: '200',
+                marginTop:"5px",
                 color: '#333',
                 '&:hover': {
-                  color: '#e91e63', // Change to your desired hover color
+                color:'#e91e63', 
                 }
               }}
             >
@@ -78,6 +81,7 @@ const UserHeader = () => {
             variant="h6"
             sx={{
               fontWeight: '200',
+              marginTop:"5px",
               color: '#333',
               '&:hover': {
                 color: '#e91e63',
@@ -87,10 +91,12 @@ const UserHeader = () => {
             Cart({cartNo})
           </Typography>
 
-          {/* Wishlist Link */}
-          <Link href="/wish-list">
+         
+          <Link to="/wish-list">
             <IconButton color="inherit">
-              wishlist<FavoriteIcon sx={{ color: '#e91e63' }} />
+            <Link to="/wish-list">  
+              wishlist<FavoriteIcon sx={{color:'#e91e63'}}/>
+            </Link>  
            </IconButton>
           </Link>
         </div>

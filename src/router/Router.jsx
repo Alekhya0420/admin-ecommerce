@@ -10,6 +10,10 @@ import Userinvolve from '../components/Userinvolve/Userinvolve';
 import Userorderlist from '../components/Userorderlist/Userorderlist';
 import UserRegistration from '../components/Userpanel/Userregistration/UserRegistration'
 import Userlogin   from     '../components/Userpanel/Userlogin/Userlogin'
+import UserDashboard    from    '../components/Userpanel/UserDashboard/UserDashboard'
+import Userordered from '../components/Userpanel/Userordered/Userordered';
+import Wishlist  from  '../components/Wishlist/Wishlist';
+import ProductDetails from '../components/Userpanel/ProductDetails/ProductDetails'
 
 const AppRouter = () => {
   return (
@@ -25,7 +29,12 @@ const AppRouter = () => {
         <Route path="/checkorder-list" element={<Userorderlist />} />
         {/*userpart starts here*/}
         <Route path="/user-reg" element={<UserRegistration/>} />
-        <Route path="/user-login" element={<Userlogin/>} />
+        <Route path="/user-login" element={<Userlogin/>}/>
+
+        <Route path="/userDashboard" element={<UserDashboard/>}/>
+        <Route path="/userDashboard/user-order" element={<Userordered/>}/>
+        <Route path="/userDashboard/user-order/:id" element={<ProductDetails/>}/>
+        <Route path="/wish-list" element={<Wishlist/>}/>
       </Routes>
     </Router>
   );

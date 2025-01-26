@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import UserHeader from '../../../../reusables/users/UserHeader/UserHeader';
-import UserFooter from '../../../../reusables/users/UserFooter/UserFooter';
-import UserSlidebar from '../../../../reusables/users/UserSlidebar/UserSlidebar';
+import UserHeader from '../../../reusables/users/UserHeader/UserHeader';
+import UserFooter from '../../../reusables/users/UserFooter/UserFooter';
+import UserSlidebar from '../../../reusables/users/UserSlidebar/UserSlidebar';
 import { Box, Card, CardContent, CardMedia, Typography, Grid, Button } from "@mui/material";
 import supabase from '../../../config/superbaseClient'
 
