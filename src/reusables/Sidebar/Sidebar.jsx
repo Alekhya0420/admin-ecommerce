@@ -85,6 +85,23 @@ const Sidebar = () => {
           Order Tracking
         </Link>
       </Typography>
+
+      <Typography
+        sx={{
+          marginBottom: '20px',
+          cursor: 'pointer',
+          fontSize: '20px',
+          textDecoration: 'underline',
+          color: 'blue',
+        }}
+      >
+        <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          Logout
+        </Link>
+      </Typography>
+
+
+
     </Box>
   );
 };
