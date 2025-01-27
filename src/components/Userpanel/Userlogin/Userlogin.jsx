@@ -112,6 +112,12 @@ const Userlogin = () => {
                             Register Then
                         </Link>
                     </Typography>
+                    <Typography variant="body2">
+                        Are you new?
+                        <Link to="/admin" underline="hover">
+                            Go to admin
+                        </Link>
+                    </Typography>
                 </form>
             </Box>
         </Box>
