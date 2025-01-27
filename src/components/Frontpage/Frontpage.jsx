@@ -53,7 +53,7 @@ const Frontpage = () => {
           }}
         >
           <Link
-            to="/admin"
+            to="/admin-auth"
             style={{ textDecoration: "none", color: "inherit" }}
           >
             👩‍💼 Are you Admin?

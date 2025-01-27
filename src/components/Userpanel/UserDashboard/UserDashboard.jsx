@@ -1,4 +1,3 @@
-"use client"
 import React, {useEffect,useState} from "react";
 import axios from "axios";
 import {product_api} from '../../../api/api'
@@ -18,8 +17,10 @@ const UserDashboard = () => {
   const [user, setUser] = useState(null);  // Added state for user
   const api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqaHZ6emtzemJqZXVucnZncXZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzcwOTQ2MDgsImV4cCI6MjA1MjY3MDYwOH0.lkz7qhlQ-rxSlZJzCXgBNDPFnoMjvu9QQWWnSf8zOco";
 
+  let userData = JSON.parse(localStorage.getItem('user')).name;
   
-  // Fetch user data after the component mounts (client-side only)
+
+  
   useEffect(() => {
     if (typeof window !== "undefined") 
     {
@@ -53,7 +54,7 @@ const UserDashboard = () => {
     const totalPrice = product.price * orderQuantity;
 
     if (user) {
-      const { id: userId, name: userName } = user;
+      const {id:userId,name:userName} = user;
 
       try {
         const { data, error } = await supabase.from("orders").insert({
@@ -99,19 +100,25 @@ const UserDashboard = () => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
+
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm)
+    (product.name.toLowerCase().includes(searchTerm) || 
+     product.category.toLowerCase().includes(searchTerm))
   );
+  
 
   const handleReviewSubmit = async (product, review) => {
     if (user) {
-      const { id: userId } = user;
+      const {id:userId} = user;
 
       try {
-        const { data, error } = await supabase.from("reviews").insert({
+        const {data,error} = await supabase.from("reviews").insert({
           product_id: product.id,
           user_id: userId,
           review: review,
+          product_name:product.name,
+          review_image:product.image_url,
+          reviewer_name:userData
         });
 
         if (error) {
@@ -229,6 +236,11 @@ const UserDashboard = () => {
                   <Typography variant="body2" color="text.secondary" sx={{ marginTop: "8px" }}>
                     {product.description}
                   </Typography>
+
+                  <Typography variant="body2" color="text.secondary" sx={{ marginTop: "8px" }}>
+                   <span style={{fontWeight:"bold"}}>Category:</span> {product.category}
+                  </Typography>
+
                   <Typography variant="body1" color="primary" sx={{ marginTop: "8px", fontWeight: "bold" }}>
                     ${product.price}
                   </Typography>

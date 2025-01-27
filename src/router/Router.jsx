@@ -14,12 +14,15 @@ import UserDashboard    from    '../components/Userpanel/UserDashboard/UserDashb
 import Userordered from '../components/Userpanel/Userordered/Userordered';
 import Wishlist  from  '../components/Wishlist/Wishlist';
 import ProductDetails from '../components/Userpanel/ProductDetails/ProductDetails'
+import Adminauthenticate   from   '../components/Adminauthenticate/Adminauthenticate'
+import Review from '../components/Review/Review';
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Frontpage/>}/>
+        <Route path="/admin-auth" element={<Adminauthenticate/>}/>
         <Route path="/add" element={<Addproduct/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/order-tracking" element={<Ordertracker/>}/>
@@ -27,6 +30,7 @@ const AppRouter = () => {
         <Route path="/total-user" element={<Usercount/>}/>
         <Route path="/total-user/:name" element={<Userinvolve/>}/>
         <Route path="/checkorder-list" element={<Userorderlist />}/>
+        <Route path="/review" element={<Review/>}/>
 
         {/*userpart starts here*/}
         <Route path="/user-reg" element={<UserRegistration/>} />

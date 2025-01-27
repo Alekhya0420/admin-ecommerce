@@ -72,6 +72,7 @@ const Sidebar = () => {
           Product View
         </Link>
       </Typography>
+
       <Typography
         sx={{
           marginBottom: '20px',
@@ -81,10 +82,26 @@ const Sidebar = () => {
           color: 'blue',
         }}
       >
-        <Link to="/order-tracking" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+      <Link to="/order-tracking" style={{ color: 'inherit', textDecoration: 'inherit' }}>
           Order Tracking
         </Link>
       </Typography>
+
+      <Typography
+        sx={{
+          marginBottom: '20px',
+          cursor: 'pointer',
+          fontSize: '20px',
+          textDecoration: 'underline',
+          color: 'blue',
+        }}
+      >
+      <Link to="/review" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          Review
+        </Link>
+      </Typography>
+
+      
 
       <Typography
         sx={{
