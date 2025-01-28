@@ -11,6 +11,7 @@ import {
   Box,
   Button,
   Avatar,
+  TextField,
 } from '@mui/material';
 import Slidebar from '../../reusables/Sidebar/Sidebar';
 import Header from '../../reusables/Header/Header';
@@ -20,19 +21,20 @@ import Adminfooter from '../../reusables/Adminfooter/Adminfooter';
 const Review = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState(null);
+  const [adminFeedback, setAdminFeedback] = useState('');  // State for admin feedback
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         const { data, error } = await supabase
           .from('reviews')
-          .select('id, product_id, product_name, review_image, user_id, review,reviewer_name');
+          .select('id, product_id, product_name, review_image, user_id, review, reviewer_name, adminfed');  
 
         if (error) {
           throw error;
         }
 
-        setReviews(data); 
+        setReviews(data);
       } catch (error) {
         setError(`Error fetching reviews: ${error.message}`);
         console.error('Error:', error);
@@ -61,13 +63,42 @@ const Review = () => {
     }
   };
 
-  return (
-    <Box sx={{display:'flex',marginLeft:'100px'}}>
-      
-    <Slidebar/>
-    <Header/>
+  const handleAdminFeedbackChange = (e) => {
+    setAdminFeedback(e.target.value);
+  };
 
-      <Box sx={{flexGrow:1,padding:'20px',overflowY:'auto'}}>       
+  const handleSubmitAdminFeedback = async (reviewId) => {
+    try {
+      const { error } = await supabase
+        .from('reviews')
+        .update({ adminfed: adminFeedback })  // Update the 'adminfed' column
+        .eq('id', reviewId);
+
+      if (error) {
+        throw error;
+      }
+
+      // Update the local reviews state with the new feedback
+      setReviews((prevReviews) =>
+        prevReviews.map((review) =>
+          review.id === reviewId ? { ...review, adminfed: adminFeedback } : review
+        )
+      );
+
+      // Clear the feedback input field after submission
+      setAdminFeedback('');
+    } catch (error) {
+      setError(`Error submitting admin feedback: ${error.message}`);
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <Box sx={{ display: 'flex', marginLeft: '100px' }}>
+      <Slidebar />
+      <Header />
+
+      <Box sx={{ flexGrow: 1, padding: '20px', overflowY: 'auto' }}>
         <Box
           sx={{
             marginTop: '20px',
@@ -98,8 +129,9 @@ const Review = () => {
                       <TableCell sx={{ color: 'white' }}><strong>Product ID</strong></TableCell>
                       <TableCell sx={{ color: 'white' }}><strong>User ID</strong></TableCell>
                       <TableCell sx={{ color: 'white' }}><strong>Review</strong></TableCell>
+                      <TableCell sx={{ color: 'white' }}><strong>Admin Feedback</strong></TableCell>
                       <TableCell sx={{ color: 'white' }} align="center"><strong>Actions</strong></TableCell>
-                       
+                      <TableCell sx={{ color: 'white' }} align="center"><strong>Submit</strong></TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -125,7 +157,28 @@ const Review = () => {
                           <TableCell>{review.product_id}</TableCell>
                           <TableCell>{review.user_id}</TableCell>
                           <TableCell>{review.review}</TableCell>
+                          <TableCell>{review.adminfed}</TableCell> 
+                          <TableCell>
+                            <TextField
+                              label="Admin Feedback"
+                              variant="outlined"
+                              fullWidth
+                              multiline
+                              rows={3}
+                              value={adminFeedback}
+                              onChange={handleAdminFeedbackChange}
+                            />
+                          </TableCell>
                           <TableCell align="center">
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              size="small"
+                              onClick={() => handleSubmitAdminFeedback(review.id)}
+                              sx={{ marginLeft: '10px' }}
+                            >
+                              Submit Feedback
+                            </Button>
                             <Button
                               variant="contained"
                               color="error"
@@ -140,7 +193,7 @@ const Review = () => {
                       ))
                     ) : (
                       <TableRow>
-                        <TableCell colSpan={6} align="center">
+                        <TableCell colSpan={8} align="center">
                           No reviews available
                         </TableCell>
                       </TableRow>
@@ -152,7 +205,7 @@ const Review = () => {
           </Paper>
         </Box>
 
-        <Adminfooter/>
+        <Adminfooter />
       </Box>
     </Box>
   );

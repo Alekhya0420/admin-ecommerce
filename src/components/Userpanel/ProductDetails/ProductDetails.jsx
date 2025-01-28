@@ -214,6 +214,9 @@ const ProductDetails = () => {
                           <Typography variant="body1" color="brown">
                             {review.review}
                           </Typography>
+                          <Typography variant="body1" color="brown">
+                            <strong>Admin:</strong>{review.adminfed}
+                          </Typography>
                         </Card>
                       </Grid>
                     ))}
@@ -233,7 +236,7 @@ const ProductDetails = () => {
         </Grid>
       </Container>
 
-      <Box sx={{ marginTop: 'auto', paddingTop: '30px' }}>
+      <Box sx={{marginTop:'auto',paddingTop:'30px'}}>
         <UserFooter />
       </Box>
     </div>

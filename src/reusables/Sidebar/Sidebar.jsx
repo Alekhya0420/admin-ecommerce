@@ -96,6 +96,21 @@ const Sidebar = () => {
           color: 'blue',
         }}
       >
+      <Link to="/order-stock" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          Stock
+        </Link>
+      </Typography>
+
+
+      <Typography
+        sx={{
+          marginBottom: '20px',
+          cursor: 'pointer',
+          fontSize: '20px',
+          textDecoration: 'underline',
+          color: 'blue',
+        }}
+      >
       <Link to="/review" style={{ color: 'inherit', textDecoration: 'inherit' }}>
           Review
         </Link>

@@ -16,6 +16,7 @@ import Wishlist  from  '../components/Wishlist/Wishlist';
 import ProductDetails from '../components/Userpanel/ProductDetails/ProductDetails'
 import Adminauthenticate   from   '../components/Adminauthenticate/Adminauthenticate'
 import Review from '../components/Review/Review';
+import StockAlert from '../components/Stockalert/Stockalert';
 
 const AppRouter = () => {
   return (
@@ -31,6 +32,8 @@ const AppRouter = () => {
         <Route path="/total-user/:name" element={<Userinvolve/>}/>
         <Route path="/checkorder-list" element={<Userorderlist />}/>
         <Route path="/review" element={<Review/>}/>
+        <Route path="/order-stock" element={<StockAlert/>}/>
+
 
         {/*userpart starts here*/}
         <Route path="/user-reg" element={<UserRegistration/>} />

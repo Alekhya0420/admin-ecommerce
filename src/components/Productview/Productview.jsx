@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import Slidebar from '../../reusables/Sidebar/Sidebar';
 import Header from '../../reusables/Header/Header';
@@ -11,6 +13,7 @@ const Productview = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editProduct, setEditProduct] = useState(null);
+  const [searchText, setSearchText] = useState(''); // New state for search text
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -37,6 +40,11 @@ const Productview = () => {
 
     fetchProducts();
   }, []);
+
+  // Filter products based on search text
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   const deleteProduct = async (productId) => {
     try {
@@ -92,9 +100,20 @@ const Productview = () => {
         }}
       >
         <h2 style={{ marginBottom: '20px', textAlign: 'center', color: '#333' }}>Product List</h2>
+
+        {/* Search Bar */}
+        <TextField
+        label="Search by Product Name"
+        variant="outlined"
+        fullWidth
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        style={{ marginBottom: '20px' }}
+        />
+
         {loading ? (
           <p>Loading products...</p>
-        ) : products.length > 0 ? (
+        ) : filteredProducts.length > 0 ? (
           <div style={{ overflowX: 'auto' }}>
             <table
               className="table table-striped table-bordered table-hover"
@@ -106,10 +125,7 @@ const Productview = () => {
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
               }}
             >
-              <thead
-                className="thead-light"
-                style={{ backgroundColor: '#A7D7F9', color: '#333' }}
-              >
+              <thead className="thead-light" style={{ backgroundColor: '#A7D7F9', color: '#333' }}>
                 <tr>
                   <th style={{ padding: '15px', border: '1px solid #D4EAFD' }}>ID</th>
                   <th style={{ padding: '15px', border: '1px solid #D4EAFD' }}>Name</th>
@@ -120,7 +136,7 @@ const Productview = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product) =>
+                {filteredProducts.map((product) =>
                   editProduct && editProduct.id === product.id ? (
                     <tr key={product.id}>
                       <td>{product.id}</td>
@@ -178,12 +194,7 @@ const Productview = () => {
                       <td>${product.price.toFixed(2)}</td>
                       <td>
                         {product.image_url ? (
-                          <img
-                            src={product.image_url}
-                            alt={product.name}
-                            width={50}
-                            height={50}
-                          />
+                          <img src={product.image_url} alt={product.name} width={50} height={50} />
                         ) : (
                           'No image'
                         )}
