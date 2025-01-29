@@ -24,14 +24,17 @@ const UserFooter = () => {
       </Typography>
 
       <Box sx={{ display: "flex", gap: "50px" }}>
-        <p style={{ color: "#e91e63", fontSize: "14px", cursor: "pointer" }}>
+        <p style={{ color: "white", fontSize: "14px", cursor: "pointer" }}>
           Privacy Policy
         </p>
-        <p style={{ color: "#e91e63", fontSize: "14px", cursor: "pointer" }}>
+        <p style={{ color: "white", fontSize: "14px", cursor: "pointer" }}>
           Terms & Conditions
         </p>
-        <p style={{ color: "#e91e63", fontSize: "14px", cursor: "pointer" }}>
+        <p style={{ color: "white", fontSize: "14px", cursor: "pointer" }}>
           Help
+        </p>
+        <p style={{ color: "white", fontSize: "14px", cursor: "pointer" }}>
+          Contactno:1212121212
         </p>
       </Box>
     </Box>

@@ -20,6 +20,28 @@ const Admin = () => {
   const { productLength } = ProductQuantity();
   const { orderLength } = Orderlength();
 
+  const[totalSale,setTotalsale] = useState(0);
+  
+  useEffect(() => {
+    const fetchTotalPrice = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("orders")
+          .select("total_price"); 
+
+        if (error) throw error;
+
+        const total = data.reduce((sum, order) => sum + order.total_price, 0);
+        setTotalsale(total);
+
+      } catch (err) {
+        console.error("Error fetching total price:", err);
+      }
+    };
+
+    fetchTotalPrice();
+  }, []); 
+
   useEffect(()=>{
     async function userCount()
     {
@@ -159,6 +181,12 @@ const Admin = () => {
               <Link to="/checkorder-list">
                 <Typography variant="h6">Order History</Typography>
               </Link>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} sm={4}>
+            <Card sx={{ padding: 2, boxShadow: 3, backgroundColor: '#F0F8FF', border: '1px solid blue', '&:hover': { backgroundColor: '#BA68C8' } }}>
+              <Typography variant="h6">Total sales {totalSale}</Typography>
             </Card>
           </Grid>
 
